@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  transformer:
+    build: .
+    container_name: transformer-container
+    volumes:
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    stdin_open: true
+    tty: true
